@@ -1,0 +1,15 @@
+{
+  "english": "hello",
+  "italian": "ciao",
+  "chinese": {
+    "character": "你好",
+    "pronunciation": "nihao"
+  },
+  "japanese": {
+    "character": "こんにちは",
+    "pronunciation": "konnichiwa"
+  },
+  "german": "hallo",
+  "russian": "ПРИВЕТ",
+  "french": "bonjour, salut"
+}

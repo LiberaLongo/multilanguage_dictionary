@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			Multi-language dictionary
+		</title>
+		<style>
+			card {
+				display: flex;
+				flex-direction: row;
+				/*flex-direction: row-reverse;*/
+				flex-wrap: wrap;
+				/*flex-direction: column;*/
+			}
+			.text {
+				font-size: 6em;
+			}
+		</style>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	</head>
+	<body>
+		<h1>
+			Multi-language dictionary
+		</h1>
+		<a href="/">home</a>
+		<form>
+			<label for="language">Language</label>
+			<select id="language">
+				<option value="">--Please choose an option--</option>
+				<option value="English">English (English)</option>
+				<option value="Italian">Italiano (Italian)</option>
+				<option value="Chinese">汉语 (Chinese)</option>
+				<option value="Japanese">日本語 (Japanese)</option>
+				<option value="German">Deutsch (German)</option>
+				<option value="Russian">Русский (Russian)</option>
+				<option value="French">Français (French)</option>
+			</select>
+			<label for="word">Word</label>
+			<input type="text" id="word" name="word">
+			<input type="submit" value="Search">
+		</form>
+		<card id="translations"></card>
+		<script src="./search.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	<body>
+</html>

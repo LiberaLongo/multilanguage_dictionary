@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			Multi-language dictionary
+		</title>
+		<style>
+			img { height: 10vh; width: 15vw; }
+			label { font-size: 4em; }
+			input[type=text] { font-size: 3em; width: 30vw; }
+			input[class=long] { width: 60vw; }
+		</style>
+	</head>
+	<body>
+		<h1>
+			Multi-language dictionary
+		</h1>
+		<a href="/">home</a>
+		<form action="/submit" method="POST">
+			<table>
+			<tr>
+				<th>flag</th>
+				<th>label</th>
+				<th>input</th>
+				<th>pronunciation<input type="submit" value="Insert"></th>
+			</tr><tr>
+				<td><img src="images/English.png" alt="English"></td>
+				<td><label for="English">English</label></td>
+				<td colspan="2"><input type="text" class="long" name="English"></td>
+			</tr><tr>
+				<td><img src="images/Italian.png" alt="Italiano"></td>
+				<td><label for="Italian">Italiano</label></td>
+				<td colspan="2"><input type="text" class="long" name="Italian"></td>
+			</tr><tr>
+				<td><img src="images/Chinese.png" alt="Chinese"></td>
+				<td><label for="Chinese">汉语 </label></td>
+				<td><input type="text" name="Chinese"></td>
+				<td><input type="text" name="p_chinese"></td>
+			</tr><tr>
+				<td><img src="images/Japanese.png" alt="Japanese"></td>
+				<td><label for="Japanese">日本語</label></td>
+				<td><input type="text" name="Japanese"></td>
+				<td><input type="text" name="p_japanese"></td>
+			</tr><tr>
+				<td><img src="images/German.png" alt="German"></td>
+				<td><label for="German">Deutsch</label></td>
+				<td colspan="2"><input type="text" class="long" name="German"></td>
+			</tr><tr>
+				<td><img src="images/Russian.png" alt="Russian"></td>
+				<td><label for="Russian">Русский</label></td>
+				<td colspan="2"><input type="text" class="long" name="Russian"></td>
+			</tr><tr>
+				<td><img src="images/French.png" alt="French"></td>
+				<td><label for="French">Français</label></td>
+				<td colspan="2"><input type="text" class="long" name="French">
+			</tr>
+			</table>
+			
+		</form>
+		<card id="translations"></card>
+	<body>
+</html>
