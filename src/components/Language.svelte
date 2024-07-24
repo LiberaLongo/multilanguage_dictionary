@@ -1,23 +1,28 @@
+<!-- Language.svelte -->
 <script>
-	export let id;
-	export let myself;
-	export let pronunciation=false;
+  export let lang;
+  export let wordVariable;
+  export let wordPronunciation;
 </script>
 
-<img src="images/{id}.png" alt={id}>
-<label for="{id}">{myself}</label>
-{#if pronunciation}
-<input type="text" name={id}>
-<input type="text" name="p_{id}">
-{:else}
-<input type="text" class="long" name={id}>
-{/if}
-<br>
+<div>
+	<img src="images/{lang.id}.png" alt={lang.id}>
+	<label for={lang.id} style="font-size: 3em;">{lang.id}:</label>
+	<input
+		id={lang.id}
+		type="text"
+		bind:value={wordVariable} />
+	{#if lang.pronunciation}
+	<label for={"p_" + lang.id}>pronunciation for {lang.id}:</label>
+	<input
+		id={"p_" + lang.id}
+		type="text"
+		bind:value={wordPronunciation} />
+	{/if}
+</div>
 
 <style>
 	img { height: 10vh; width: 15vw; }
-	label { font-size: 3em; }
-	input[type=text] { font-size: 2em; width: 20vw; }
-	input[class=long] { width: 60vw; }
+	input { font-size: 2em; width: 20vw; }
 </style>
 

@@ -1,6 +1,8 @@
 <script>
     // Qui puoi scrivere del codice JavaScript, se necessario
     import Insert from './components/Insert.svelte';
+    
+    //TODO: bootstrap
 </script>
 
 <main>
