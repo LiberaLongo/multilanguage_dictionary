@@ -1,3 +1,8 @@
-import { Routes } from '@angular/router';
+// Angular/src/app/app.routes.ts
 
-export const routes: Routes = [];
+import { Routes } from '@angular/router';
+import { ChineseComponent } from './chinese/chinese.component';
+
+export const routes: Routes = [
+  { path: 'chinese', component: ChineseComponent },
+];
