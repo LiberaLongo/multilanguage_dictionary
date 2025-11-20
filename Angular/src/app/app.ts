@@ -4,21 +4,35 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 
+const LANGUAGE_LIST = [
+	{id: 0, name:"Chinese"},
+	{id: 1, name:"English"},
+	{id: 2, name:"French"},
+	{id: 3, name:"Italian"},
+	{id: 4, name:"Japanese"},
+	{id: 5, name:"Russian"},
+]
+
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
-  template: `
-    <h1>Hello World</h1>
-    <button (click)="navigateToChinese()">Learn Chinese</button>
-    <router-outlet></router-outlet>
-  `,
-  styleUrls: ['./app.css']
+	selector: 'app-root',
+	standalone: true,
+	imports: [RouterOutlet],
+	template: `
+		<h1>Hello World</h1>
+		@for ( l of languages; track l.id ) {
+			<button (click)="navigateToLanguage(l.name)">Learn {{l.name}}</button>
+		}
+		<router-outlet></router-outlet>
+	`,
+	//styleUrls: ['./app.css']
 })
 export class AppComponent {
-  constructor(private router: Router) {}
 
-  navigateToChinese() {
-    this.router.navigate(['/chinese']);
-  }
+	languages = LANGUAGE_LIST;
+
+	constructor(private router: Router) {}
+
+	navigateToLanguage(name: string) {
+		this.router.navigate(['/' + name]);
+	}
 }

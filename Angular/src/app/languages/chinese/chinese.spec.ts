@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChineseComponent } from './chinese.component';
+import { Chinese } from './chinese';
 
-describe('ChineseComponent', () => {
-  let component: ChineseComponent;
-  let fixture: ComponentFixture<ChineseComponent>;
+describe('Chinese', () => {
+  let component: Chinese;
+  let fixture: ComponentFixture<Chinese>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChineseComponent]
+      imports: [Chinese]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ChineseComponent);
+    fixture = TestBed.createComponent(Chinese);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
