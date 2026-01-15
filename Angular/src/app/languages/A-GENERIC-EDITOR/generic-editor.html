@@ -1,4 +1,22 @@
 <!-- generic-editor.component.html -->
-<p>we are trying to learn {{language}} language!</p>
-<img [src]="language + '.png'" [alt]="language" height="5%" width="8%"/>
-<input type="text" [(ngModel)]="input"/>
+<p>{{language}}
+	<img [src]="language + '.png'" [alt]="language" height="50px">
+</p>
+<form>
+		<label for="key"> Insert english (used as key): 
+			<input name="key" type="text" [(ngModel)]="key"/>
+		</label>
+	<br>
+		<label for="word"> Insert a new world: 
+			<input name="word" type="text" [(ngModel)]="word"/>
+		</label>
+		@if (language === "Chinese" || language === "Japanese") {
+	<br>
+			<label for="pronun"> Insert its pronunciation : 
+				<input name="pronun" type="text" [(ngModel)]="pronun"/>
+			</label>
+		}
+	<br>
+		<button type="submit">Insert into your dictionary</button>
+		<button type="reset">Reset</button>
+</form>

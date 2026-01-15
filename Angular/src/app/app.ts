@@ -20,7 +20,10 @@ const LANGUAGE_LIST = [
 	template: `
 		<h1>Hello World</h1>
 		@for ( l of languages; track l.id ) {
-			<button (click)="navigateToLanguage(l.name)">Learn {{l.name}}</button>
+			<button (click)="navigateToLanguage(l.name)">
+				Learn {{l.name}}
+				<img [src]="l.name + '.png'" alt="flag of l.name" height="15px"/>
+			</button>
 		}
 		<router-outlet></router-outlet>
 	`,

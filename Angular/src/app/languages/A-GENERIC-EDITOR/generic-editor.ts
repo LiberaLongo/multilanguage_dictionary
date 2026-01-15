@@ -10,5 +10,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class GenericEditor {
   @Input() language:string = "generic";
-  input = "";
+  key = "";
+  word = "";
+  pronun = "";
+
 }
