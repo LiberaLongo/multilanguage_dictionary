@@ -50,8 +50,17 @@ export interface RussianWord extends BaseTranslation {
 export class Word {
 	//setted by the program (MongoDB)
 	_id: string = "";
-	//setted by English word
+
+	//SEARCH WORDS
+	// Main English key
 	key!: string;
+	// Optional synonyms
+	synonyms: string[] = [];  
+	// Combined array for easy search: key + synonyms
+	get allKeys(): string[] {
+		return [this.key, ...this.synonyms];
+	}
+
 	//grammar
 	grammar!: GrammarCategory | GrammarCategory[];
 	//languages
@@ -59,4 +68,8 @@ export class Word {
 	italian?: ItalianWord;
 	japanese?: JapaneseWord;
 	russian?: RussianWord;
+
+	constructor(init?: Partial<Word>) {
+		Object.assign(this, init);
+	}
 }
