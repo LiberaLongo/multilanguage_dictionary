@@ -27,7 +27,9 @@ export type GrammarCategory =
 //languages structures
 //Chinese
 export interface ChineseWord extends BaseTranslation {
-	pinyin: string;
+	pinyin?: string;          // "mā" with tone marks, can be filled later
+	pinyinNumbered?: string;  // "ma1" etc           , for fast initial entry
+	transliteration?: string; // ASCII-only "ma"     , search, convenience
 }
 //Italian
 export interface ItalianWord extends BaseTranslation {
