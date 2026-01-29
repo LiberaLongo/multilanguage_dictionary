@@ -1,22 +1,127 @@
-<!-- generic-editor.component.html -->
 <p>{{language}}
 	<img [src]="language + '.png'" [alt]="language" height="50px">
 </p>
-<form>
-		<label for="key"> Insert english (used as key): 
-			<input name="key" type="text" [(ngModel)]="key"/>
+
+<!-- Show warning for unsupported languages -->
+<div *ngIf="showWarning" style="color: red; font-weight: bold;">
+	{{ warningMessage }}
+</div>
+
+<!-- Only show form if supported language -->
+<form *ngIf="!showWarning" (ngSubmit)="submit()">
+
+	<label>
+		Insert English (used as key):
+		<input type="text" [(ngModel)]="key" name="key" required>
+	</label>
+	<br>
+
+	<!-- Grammar selection -->
+	<label>
+		Select grammar:
+		<select [(ngModel)]="grammar" name="grammar">
+			<option *ngFor="let g of ['noun','verb','adjective','adverb','pronoun','particle','classifier','conjunction','interjection','proper-noun']" [value]="g">{{g}}</option>
+		</select>
+	</label>
+	<br>
+
+	<!-- English only -->
+	<ng-container *ngIf="language === 'English'">
+		<label>
+			Insert synonyms (comma-separated):
+			<input type="text" [(ngModel)]="englishSynonyms" name="englishSynonyms">
 		</label>
-	<br>
-		<label for="word"> Insert a new world: 
-			<input name="word" type="text" [(ngModel)]="word"/>
+		<br>
+	</ng-container>
+
+	<!-- Chinese only -->
+	<ng-container *ngIf="language === 'Chinese'">
+		<label>
+			Insert Chinese word (汉字):
+			<input type="text" [(ngModel)]="chineseNative" name="chineseNative" required>
 		</label>
-		@if (language === "Chinese" || language === "Japanese") {
-	<br>
-			<label for="pronun"> Insert its pronunciation : 
-				<input name="pronun" type="text" [(ngModel)]="pronun"/>
-			</label>
-		}
-	<br>
-		<button type="submit">Insert into your dictionary</button>
-		<button type="reset">Reset</button>
+		<br>
+		<label>
+			Pinyin (tone marks):
+			<input type="text" [(ngModel)]="chinesePinyin" name="chinesePinyin">
+		</label>
+		<br>
+		<label>
+			Numbered Pinyin:
+			<input type="text" [(ngModel)]="chinesePinyinNumbered" name="chinesePinyinNumbered">
+		</label>
+		<br>
+		<label>
+			Transliteration (ASCII-only):
+			<input type="text" [(ngModel)]="chineseTransliteration" name="chineseTransliteration">
+		</label>
+		<br>
+	</ng-container>
+
+	<!-- Japanese only -->
+	<ng-container *ngIf="language === 'Japanese'">
+		<label>
+			Insert Japanese word:
+			<input type="text" [(ngModel)]="japaneseNative" name="japaneseNative" required>
+		</label>
+		<br>
+		<label>
+			Hiragana:
+			<input type="text" [(ngModel)]="japaneseHiragana" name="japaneseHiragana">
+		</label>
+		<br>
+		<label>
+			Katakana (optional):
+			<input type="text" [(ngModel)]="japaneseKatakana" name="japaneseKatakana">
+		</label>
+		<br>
+		<label>
+			Romaji (ASCII-only):
+			<input type="text" [(ngModel)]="japaneseTransliteration" name="japaneseTransliteration">
+		</label>
+		<br>
+	</ng-container>
+
+	<!-- Italian only -->
+	<ng-container *ngIf="language === 'Italian'">
+		<label>
+			Insert Italian word:
+			<input type="text" [(ngModel)]="italianNative" name="italianNative" required>
+		</label>
+		<br>
+		<label>
+			Gender:
+			<input type="checkbox" [(ngModel)]="isMale" name="genderToggle">
+			{{ isMale ? 'Male (m)' : 'Female (f)' }}
+		</label>
+		<br>
+	</ng-container>
+
+	<!-- Russian only -->
+	<ng-container *ngIf="language === 'Russian'">
+		<label>
+			Insert Russian word:
+			<input type="text" [(ngModel)]="russianNative" name="russianNative" required>
+		</label>
+		<br>
+		<label>
+			Transliteration (optional):
+			<input type="text" [(ngModel)]="russianTransliteration" name="russianTransliteration">
+		</label>
+		<br>
+		<label>
+			Pronunciation (optional):
+			<input type="text" [(ngModel)]="russianPronunciation" name="russianPronunciation">
+		</label>
+		<br>
+	</ng-container>
+
+	<button type="submit">Insert into dictionary</button>
+	<button type="button" (click)="resetForm()">Reset</button>
 </form>
+
+<!-- DEBUG: Show the last submitted word -->
+<div *ngIf="submittedWord" style="margin-top: 20px; background: #f4f4f4; padding: 10px;">
+	<strong>Last submitted Word JSON:</strong>
+	<pre>{{ submittedWord | json }}</pre>
+</div>

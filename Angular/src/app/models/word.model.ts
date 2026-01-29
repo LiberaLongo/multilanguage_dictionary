@@ -1,3 +1,5 @@
+//word.model.ts
+
 //common part to every language
 export interface LearningNote {
 	type?: 'grammar' | 'usage' | 'culture';
@@ -13,16 +15,16 @@ interface BaseTranslation {
 	examples?: Example[];
 }
 export type GrammarCategory =
-  | 'noun'
-  | 'verb'
-  | 'adjective'
-  | 'adverb'
-  | 'pronoun'
-  | 'particle'
-  | 'classifier'
-  | 'conjunction'
-  | 'interjection'
-  | 'proper-noun';
+	| 'noun'
+	| 'verb'
+	| 'adjective'
+	| 'adverb'
+	| 'pronoun'
+	| 'particle'
+	| 'classifier'
+	| 'conjunction'
+	| 'interjection'
+	| 'proper-noun';
 
 //languages structures
 //Chinese
