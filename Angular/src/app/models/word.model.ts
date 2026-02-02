@@ -74,4 +74,21 @@ export class Word {
 	constructor(init?: Partial<Word>) {
 		Object.assign(this, init);
 	}
+
+	// 🔍 campo per ricerca
+	searchIndex: string[] = [];
+	buildSearchIndex() {
+		const values = [
+			this.key,
+			...this.synonyms,
+			this.chinese?.transliteration,
+			this.chinese?.pinyinNumbered,
+			this.japanese?.hiragana,
+			this.russian?.transliteration,
+		];
+
+		this.searchIndex = values
+			.filter(Boolean)
+			.map(v => v!.toLowerCase());
+	}
 }
