@@ -51,23 +51,10 @@
 	</italian-section>
 
 	<!-- Russian only -->
-	<ng-container *ngIf="language === 'Russian'">
-		<label>
-			Insert Russian word:
-			<input type="text" [(ngModel)]="russianNative" name="russianNative" required>
-		</label>
-		<br>
-		<label>
-			Transliteration (optional):
-			<input type="text" [(ngModel)]="russianTransliteration" name="russianTransliteration">
-		</label>
-		<br>
-		<label>
-			Pronunciation (optional):
-			<input type="text" [(ngModel)]="russianPronunciation" name="russianPronunciation">
-		</label>
-		<br>
-	</ng-container>
+	<russian-section
+		*ngIf="language === 'Russian'"
+		[(data)]="tempRussian">
+	</russian-section>
 
 	<button type="submit">Insert into dictionary</button>
 	<button type="button" (click)="resetForm()">Reset</button>

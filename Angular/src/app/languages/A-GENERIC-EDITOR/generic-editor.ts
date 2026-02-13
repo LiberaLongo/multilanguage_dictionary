@@ -6,12 +6,13 @@ import { Word, ChineseWord, JapaneseWord, ItalianWord, RussianWord, GrammarCateg
 import { ChineseSection } from '../chinese/chinese-section';
 import { JapaneseSection } from '../japanese/japanese-section';
 import { ItalianSection } from '../italian/italian-section';
+import { RussianSection } from '../russian/russian-section';
 
 @Component({
 	selector: 'generic-editor',
 	standalone: true,
 	imports: [FormsModule, CommonModule,
-		ChineseSection, JapaneseSection, ItalianSection
+		ChineseSection, JapaneseSection, ItalianSection, RussianSection
 	],
 	templateUrl: './generic-editor.html',
 	styleUrls: ['./generic-editor.css']
@@ -38,12 +39,8 @@ export class GenericEditor {
 	// Italian fields
 	tempItalian?: ItalianWord;
 
-	// -----------------
 	// Russian fields
-	// -----------------
-	russianNative = '';
-	russianTransliteration = '';
-	russianPronunciation = '';
+	tempRussian?: RussianWord;
 
 	// -----------------
 	// GETTERS for warnings
@@ -65,10 +62,6 @@ export class GenericEditor {
 		this.grammar = 'noun';
 
 		this.englishSynonyms = '';
-
-		this.russianNative = '';
-		this.russianTransliteration = '';
-		this.russianPronunciation = '';
 	}
 
 	// -----------------
@@ -102,11 +95,7 @@ export class GenericEditor {
 				break;
 
 			case 'Russian':
-				newWord.russian = {
-					native: this.russianNative,
-					transliteration: this.russianTransliteration || undefined,
-					pronunciation: this.russianPronunciation || undefined
-				} as RussianWord;
+				newWord.russian = this.tempRussian;
 				break;
 
 			default:
