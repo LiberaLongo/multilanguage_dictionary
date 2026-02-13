@@ -45,19 +45,10 @@
 	</japanese-section>
 
 	<!-- Italian only -->
-	<ng-container *ngIf="language === 'Italian'">
-		<label>
-			Insert Italian word:
-			<input type="text" [(ngModel)]="italianNative" name="italianNative" required>
-		</label>
-		<br>
-		<label>
-			Gender:
-			<input type="checkbox" [(ngModel)]="isMale" name="genderToggle">
-			{{ isMale ? 'Male (m)' : 'Female (f)' }}
-		</label>
-		<br>
-	</ng-container>
+	<italian-section
+		*ngIf="language === 'Italian'"
+		[(data)]="tempItalian">
+	</italian-section>
 
 	<!-- Russian only -->
 	<ng-container *ngIf="language === 'Russian'">

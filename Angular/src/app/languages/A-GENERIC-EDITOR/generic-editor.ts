@@ -5,12 +5,13 @@ import { CommonModule } from '@angular/common';
 import { Word, ChineseWord, JapaneseWord, ItalianWord, RussianWord, GrammarCategory } from '../../models/word.model';
 import { ChineseSection } from '../chinese/chinese-section';
 import { JapaneseSection } from '../japanese/japanese-section';
+import { ItalianSection } from '../italian/italian-section';
 
 @Component({
 	selector: 'generic-editor',
 	standalone: true,
 	imports: [FormsModule, CommonModule,
-		ChineseSection, JapaneseSection
+		ChineseSection, JapaneseSection, ItalianSection
 	],
 	templateUrl: './generic-editor.html',
 	styleUrls: ['./generic-editor.css']
@@ -34,11 +35,8 @@ export class GenericEditor {
 	// Japanese fields
 	tempJapanese?: JapaneseWord;
 
-	// -----------------
 	// Italian fields
-	// -----------------
-	italianNative = '';
-	isMale: boolean = true; // toggle for gender
+	tempItalian?: ItalianWord;
 
 	// -----------------
 	// Russian fields
@@ -67,9 +65,6 @@ export class GenericEditor {
 		this.grammar = 'noun';
 
 		this.englishSynonyms = '';
-
-		this.isMale = true;
-		this.italianNative = '';
 
 		this.russianNative = '';
 		this.russianTransliteration = '';
@@ -103,10 +98,7 @@ export class GenericEditor {
 				break;
 
 			case 'Italian':
-				newWord.italian = {
-					native: this.italianNative,
-					gender: this.isMale ? 'm' : 'f'
-				} as ItalianWord;
+				newWord.italian = this.tempItalian;
 				break;
 
 			case 'Russian':
