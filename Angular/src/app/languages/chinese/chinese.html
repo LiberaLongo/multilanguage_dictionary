@@ -2,4 +2,12 @@
 <p>Tones: <img src="tones.png"
 	alt="chinese tones from 0 neutral, 1 red, 2 green, 3 blue, 4 purple"/>
 </p>
-<generic-editor [language]="'Chinese'"></generic-editor>
+<generic-editor
+	language="Chinese"
+	(wordCreated)="addWord($event)"
+></generic-editor>
+
+<h3>Words in this session:</h3>
+<ul>
+	<li *ngFor="let w of words">{{ w.key }} ({{ w.grammar }})</li>
+</ul>

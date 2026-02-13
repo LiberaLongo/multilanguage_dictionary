@@ -72,6 +72,7 @@ export class Word {
 	russian?: RussianWord;
 
 	constructor(init?: Partial<Word>) {
+		this._id = crypto.randomUUID();
 		Object.assign(this, init);
 	}
 

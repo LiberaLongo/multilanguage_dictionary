@@ -151,6 +151,8 @@ export class GenericEditor {
 		
 		// ✅ store the last submitted word for inspection
 		this.submittedWord = newWord;
+
+		console.log('Submitting key:', this.key, 'grammar:', this.grammar);
 		
 		this.resetForm();
 	}
