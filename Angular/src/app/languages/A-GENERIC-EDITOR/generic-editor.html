@@ -1,6 +1,4 @@
-<p>{{language}}
-	<img [src]="language + '.png'" [alt]="language" height="50px">
-</p>
+<!-- generic-editor.html -->
 
 <!-- Show warning for unsupported languages -->
 <div *ngIf="showWarning" style="color: red; font-weight: bold;">
@@ -35,28 +33,10 @@
 	</ng-container>
 
 	<!-- Chinese only -->
-	<ng-container *ngIf="language === 'Chinese'">
-		<label>
-			Insert Chinese word (汉字):
-			<input type="text" [(ngModel)]="chineseNative" name="chineseNative" required>
-		</label>
-		<br>
-		<label>
-			Pinyin (tone marks):
-			<input type="text" [(ngModel)]="chinesePinyin" name="chinesePinyin">
-		</label>
-		<br>
-		<label>
-			Numbered Pinyin:
-			<input type="text" [(ngModel)]="chinesePinyinNumbered" name="chinesePinyinNumbered">
-		</label>
-		<br>
-		<label>
-			Transliteration (ASCII-only):
-			<input type="text" [(ngModel)]="chineseTransliteration" name="chineseTransliteration">
-		</label>
-		<br>
-	</ng-container>
+	<chinese-section
+		*ngIf="language === 'Chinese'"
+		[(data)]="tempChinese">
+	</chinese-section>
 
 	<!-- Japanese only -->
 	<ng-container *ngIf="language === 'Japanese'">
