@@ -4,12 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Word, ChineseWord, JapaneseWord, ItalianWord, RussianWord, GrammarCategory } from '../../models/word.model';
 import { ChineseSection } from '../chinese/chinese-section';
+import { JapaneseSection } from '../japanese/japanese-section';
 
 @Component({
 	selector: 'generic-editor',
 	standalone: true,
 	imports: [FormsModule, CommonModule,
-		ChineseSection
+		ChineseSection, JapaneseSection
 	],
 	templateUrl: './generic-editor.html',
 	styleUrls: ['./generic-editor.css']
@@ -30,13 +31,8 @@ export class GenericEditor {
 	// Chinese fields
 	tempChinese?: ChineseWord;
 
-	// -----------------
 	// Japanese fields
-	// -----------------
-	japaneseNative = '';
-	japaneseHiragana = '';
-	japaneseKatakana = '';
-	japaneseTransliteration = '';
+	tempJapanese?: JapaneseWord;
 
 	// -----------------
 	// Italian fields
@@ -75,11 +71,6 @@ export class GenericEditor {
 		this.isMale = true;
 		this.italianNative = '';
 
-		this.japaneseNative = '';
-		this.japaneseHiragana = '';
-		this.japaneseKatakana = '';
-		this.japaneseTransliteration = '';
-
 		this.russianNative = '';
 		this.russianTransliteration = '';
 		this.russianPronunciation = '';
@@ -108,12 +99,7 @@ export class GenericEditor {
 				break;
 
 			case 'Japanese':
-				newWord.japanese = {
-					native: this.japaneseNative,
-					hiragana: this.japaneseHiragana || undefined,
-					katakana: this.japaneseKatakana || undefined,
-					transliteration: this.japaneseTransliteration || undefined
-				} as JapaneseWord;
+				newWord.japanese = this.tempJapanese;
 				break;
 
 			case 'Italian':

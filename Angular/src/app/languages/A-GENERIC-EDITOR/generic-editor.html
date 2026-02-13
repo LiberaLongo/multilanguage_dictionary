@@ -39,28 +39,10 @@
 	</chinese-section>
 
 	<!-- Japanese only -->
-	<ng-container *ngIf="language === 'Japanese'">
-		<label>
-			Insert Japanese word:
-			<input type="text" [(ngModel)]="japaneseNative" name="japaneseNative" required>
-		</label>
-		<br>
-		<label>
-			Hiragana:
-			<input type="text" [(ngModel)]="japaneseHiragana" name="japaneseHiragana">
-		</label>
-		<br>
-		<label>
-			Katakana (optional):
-			<input type="text" [(ngModel)]="japaneseKatakana" name="japaneseKatakana">
-		</label>
-		<br>
-		<label>
-			Romaji (ASCII-only):
-			<input type="text" [(ngModel)]="japaneseTransliteration" name="japaneseTransliteration">
-		</label>
-		<br>
-	</ng-container>
+	<japanese-section
+		*ngIf="language === 'Japanese'"
+		[(data)]="tempJapanese">
+	</japanese-section>
 
 	<!-- Italian only -->
 	<ng-container *ngIf="language === 'Italian'">

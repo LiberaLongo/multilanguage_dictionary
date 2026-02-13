@@ -8,8 +8,12 @@ import { ChineseWord } from '../../models/word.model';
 	standalone: true,
 	imports: [CommonModule, FormsModule],
 	template: `
-		<h3>Chinese
+		<h3>
+			Chinese
 			<img src="Chinese.png" alt="Chinese flag" height="50px">
+			Tones
+			<img src="tones.png" height="50px"
+				alt="chinese tones from 0 neutral, 1 red, 2 green, 3 blue, 4 purple"/>
 		</h3>
 
 		<label>

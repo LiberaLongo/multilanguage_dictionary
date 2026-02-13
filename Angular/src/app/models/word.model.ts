@@ -39,7 +39,8 @@ export interface ItalianWord extends BaseTranslation {
 }  
 //Japanese
 export interface JapaneseWord extends BaseTranslation {
-	hiragana: string;
+	romaji?: string;
+	hiragana?: string;
 	katakana?: string;
 }
 //Russian
