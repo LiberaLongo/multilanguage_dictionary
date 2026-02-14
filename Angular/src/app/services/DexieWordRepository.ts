@@ -4,6 +4,7 @@ import { GrammarCategory, Word } from "../models/word.model";
 import { WordSearch } from "../models/wordSearch";
 import { WordRepository } from "./wordRepository";
 import { db } from "./database";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export class DexieWordRepository implements WordRepository {
@@ -22,11 +23,12 @@ export class DexieWordRepository implements WordRepository {
 		await db.words.bulkPut(rebuilt);
 	}
 
-	// CRUD
-	async add(word: Word) {
-		word.buildSearchIndex();
-		await db.words.add(word);
+	private words$ = new BehaviorSubject<Word[]>([]);
+
+	getWords(): Observable<Word[]> {
+		return this.words$.asObservable();
 	}
+	// CRUD
 	async update(word: Word) {
 		word.buildSearchIndex();
 		await db.words.put(word);
@@ -127,10 +129,26 @@ export class DexieWordRepository implements WordRepository {
 			word.russian?.examples?.length
 		);
 	}
-	getByLanguage(language: string): Word[] | PromiseLike<Word[]> {
-		throw new Error('Method not implemented.');
+
+	async getAll(): Promise<Word[]> {
+		const allWords = await db.words.toArray();
+		console.log('getAll() returning words:', allWords);
+		this.words$.next(allWords);
+		return allWords;
+	}	
+	
+	async getByLanguage(language: string): Promise<Word[]> {
+		// just call getAll() — no need to filter here
+		return this.getAll();
 	}
-	getAll(): Word[] | PromiseLike<Word[]> {
-		throw new Error('Method not implemented.');
+	
+	async add(word: Word) {
+		console.log('Adding word to DB:', word);
+		word.buildSearchIndex();
+		await db.words.add(word);
+		const allWords = await db.words.toArray();
+		console.log('All words after add:', allWords);
+		this.words$.next(allWords);
 	}
+		
 }
