@@ -1,0 +1,7 @@
+<!-- word-list.html -->
+<h3>Words in this session:</h3>
+<ul>
+	<li *ngFor="let w of words">
+		{{ w.key }} ({{ w.grammar }}) - {{ language }}
+	</li>
+</ul>

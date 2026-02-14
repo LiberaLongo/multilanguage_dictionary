@@ -1,11 +1,14 @@
 // language-editor-base.ts
+import { Directive } from '@angular/core';
 import { Word } from './word.model';
 import { DexieWordRepository } from '../services/DexieWordRepository';
 
+@Directive()
 export abstract class LanguageEditorBase {
-	repository = new DexieWordRepository();
 
 	words: Word[] = [];
+
+	constructor(private repository: DexieWordRepository) {}
 
 	async addWord(word: Word) {
 		try {

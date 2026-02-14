@@ -24,8 +24,11 @@ import { ChineseWord } from '../../models/word.model';
 		<br>
 
 		<label>
-			Pinyin (tone marks):
-			<input type="text" [(ngModel)]="pinyin">
+			Transliteration (ASCII-only):
+			<input type="text"
+					[(ngModel)]="transliteration"
+					(blur)="syncFromTransliteration()"
+					(keydown.enter)="$event.preventDefault()">
 		</label>
 		<br>
 
@@ -33,15 +36,15 @@ import { ChineseWord } from '../../models/word.model';
 			Numbered Pinyin:
 			<input type="text"
 					[(ngModel)]="pinyinNumbered"
-					(ngModelChange)="autoFillFromNumbered()">
+					(input)="syncFromNumbered()"
+					(keydown.enter)="$event.preventDefault()">
 		</label>
 		<br>
 
 		<label>
-			Transliteration (ASCII-only):
+			Pinyin (tone marks):
 			<input type="text"
-					[(ngModel)]="transliteration"
-					(ngModelChange)="autoFillFromTransliteration()">
+					[(ngModel)]="pinyin">
 		</label>
 		<br>
 	`
@@ -65,6 +68,25 @@ export class ChineseSection {
 		}
 	}
 
+	syncFromTransliteration() {
+		if (!this.transliteration) return;
+	
+		this.pinyinNumbered = this.transliteration;
+		this.pinyin = this.transliteration;
+	
+		this.emitChange();
+	}
+	
+	syncFromNumbered() {
+		if (!this.pinyinNumbered) return;
+	
+		this.pinyin = this.pinyinNumbered; 
+		// later here you will convert 3 → tone marks
+	
+		this.emitChange();
+	}
+	
+
 	private emitChange() {
 		this.dataChange.emit({
 			native: this.native,
@@ -72,19 +94,5 @@ export class ChineseSection {
 			pinyinNumbered: this.pinyinNumbered || undefined,
 			transliteration: this.transliteration || undefined
 		});
-	}
-
-	autoFillFromNumbered() {
-		if (!this.pinyin && this.pinyinNumbered) {
-			this.pinyin = this.pinyinNumbered; // later you can convert to tone marks
-		}
-		this.emitChange();
-	}
-
-	autoFillFromTransliteration() {
-		if (!this.pinyin && this.transliteration) {
-			this.pinyin = this.transliteration;
-		}
-		this.emitChange();
 	}
 }

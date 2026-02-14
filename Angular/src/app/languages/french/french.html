@@ -1,2 +1,7 @@
 <!-- french.component.html -->
-<generic-editor [language]="'French'"></generic-editor>
+<generic-editor
+	language="French"
+	(wordCreated)="addWord($event)"
+></generic-editor>
+
+<app-word-list language="French"></app-word-list>

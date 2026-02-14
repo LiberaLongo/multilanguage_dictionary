@@ -1,8 +1,11 @@
+//DexieWordRepository.ts
+import { Injectable } from "@angular/core";
 import { GrammarCategory, Word } from "../models/word.model";
 import { WordSearch } from "../models/wordSearch";
 import { WordRepository } from "./wordRepository";
 import { db } from "./database";
 
+@Injectable({ providedIn: 'root' })
 export class DexieWordRepository implements WordRepository {
 
 	// INPORT EXPORT
@@ -123,5 +126,11 @@ export class DexieWordRepository implements WordRepository {
 			word.japanese?.examples?.length ||
 			word.russian?.examples?.length
 		);
+	}
+	getByLanguage(language: string): Word[] | PromiseLike<Word[]> {
+		throw new Error('Method not implemented.');
+	}
+	getAll(): Word[] | PromiseLike<Word[]> {
+		throw new Error('Method not implemented.');
 	}
 }

@@ -4,7 +4,4 @@
 	(wordCreated)="addWord($event)"
 ></generic-editor>
 
-<h3>Words in this session:</h3>
-<ul>
-	<li *ngFor="let w of words">{{ w.key }} ({{ w.grammar }})</li>
-</ul>
+<app-word-list language="Chinese"></app-word-list>
